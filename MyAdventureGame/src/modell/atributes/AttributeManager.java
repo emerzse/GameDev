@@ -1,21 +1,20 @@
-package modell;
+package modell.atributes;
 
-import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-enum GameObjectAttribute {
+import modell.attributes.templatetype.TypeAttributes;
 
-	VITALITY, STRENGHT, DEXTERY, INTELIGENT;
-}
 /**
  * This class is manage the attribute in game of characters.
  * example the player, enemy, npc
  */
 public class AttributeManager {
 
-	private EnumMap<GameObjectAttribute, Integer> originAttributes;
-	private EnumMap<GameObjectAttribute, Integer> currentAttributes;
+	private HashMap<Attribute, Integer> originAttributes;
+	private HashMap<Attribute, Integer> currentAttributes;
 	
    /**
 	*Default init values to attribute
@@ -23,11 +22,11 @@ public class AttributeManager {
 	*Two map is fill up one origin and one current attribute map. 
 	*/
 	public AttributeManager() {
-		originAttributes =  new EnumMap<GameObjectAttribute, Integer>(GameObjectAttribute.class);
-		originAttributes.put(GameObjectAttribute.VITALITY, 1);
-		originAttributes.put(GameObjectAttribute.STRENGHT, 1);
-		originAttributes.put(GameObjectAttribute.DEXTERY, 1);
-		currentAttributes = new EnumMap<GameObjectAttribute, Integer>(originAttributes);
+		originAttributes =  new HashMap<>();
+		originAttributes.put(TypeAttributes.VITALITY, 1);
+		originAttributes.put(TypeAttributes.STRENGHT, 1);
+		originAttributes.put(TypeAttributes.DEXTERY, 1);
+		currentAttributes = new HashMap<>(originAttributes);
 	}
 	
 	/**
@@ -40,44 +39,50 @@ public class AttributeManager {
 	 * Two map is fill up one origin and one current attribute map.
 	 */
 	public AttributeManager(int vitality, int strenght, int dextery) {
-		originAttributes = new EnumMap<GameObjectAttribute, Integer>(GameObjectAttribute.class);
-		originAttributes.put(GameObjectAttribute.VITALITY, vitality);
-		originAttributes.put(GameObjectAttribute.STRENGHT, strenght);
-		originAttributes.put(GameObjectAttribute.DEXTERY, dextery);
-		currentAttributes = new EnumMap<GameObjectAttribute, Integer>(originAttributes);
+		originAttributes =  new HashMap<>();
+		originAttributes.put(TypeAttributes.VITALITY, vitality);
+		originAttributes.put(TypeAttributes.STRENGHT, strenght);
+		originAttributes.put(TypeAttributes.DEXTERY, dextery);
+		currentAttributes = new HashMap<>(originAttributes);
 	}
 	
-	public AttributeManager(EnumMap<GameObjectAttribute, Integer> patternAttribute){
-		originAttributes = new EnumMap<GameObjectAttribute, Integer>(patternAttribute); 
-		currentAttributes = new EnumMap<GameObjectAttribute, Integer>(originAttributes);
+	public AttributeManager(Map<Attribute, Integer> patternAttribute){
+		originAttributes = new HashMap<>(patternAttribute); 
+		currentAttributes = new HashMap<>(originAttributes);
 	}
 	
 	//Change attribute:
 	/**
-	 * This metod can grow up any attribute where:
+	 * This method can grow up any attribute where:
 	 * @param nameAttribute is content if  content:
 	 * @param newValue add to the found attribute's value
 	 */
-	public void addAttributeValue(GameObjectAttribute nameAttribute, int newValue){
-		if(currentAttributes.containsKey(nameAttribute)){
+	public void addAttributeValue(Attribute nameAttribute, int newValue){
+		if(currentAttributes.containsKey(nameAttribute)   ){
 			int currentValue = currentAttributes.get(nameAttribute);
 		    currentAttributes.replace(nameAttribute, currentValue + newValue);
 		}		
 	}
 	/**
-	 * This metod can grow up any attribute where:
-	 * @param otherAttributes
+	 * This method can grow up any attribute where:
+	 * @param map
 	 */
-	public void addAttributeValue(Map<GameObjectAttribute, Integer> otherAttributes){
-		otherAttributes.forEach((k,v)-> currentAttributes.replace(k, currentAttributes.get(k)+v));
+	public void addAttributeValue(Map<Attribute, Integer> map){
+		
+	//	currentAttributes.compute(key, remappingFunction)
+		map.forEach((Attribute k, Integer v)->{
+			currentAttributes.compute(k, (Attribute oldK, Integer oldV)->{
+				return oldV!=null ? oldV+v : v;
+			});
+		});
 	}
 	
 	/**
-	 * This metod can decrease any attribute where:
+	 * This method can decrease any attribute where:
 	 * @param nameAttribute is content if  content:
 	 * @param newValue extract to the found attribute's value
 	 */
-	public void extractAttributeValue(GameObjectAttribute nameAttribute, int newValue){
+	public void extractAttributeValue(Attribute nameAttribute, int newValue){
 		if(currentAttributes.containsKey(nameAttribute)){
 			int currentValue = currentAttributes.get(nameAttribute);
 			this.checkAttributes(nameAttribute,newValue);
@@ -85,16 +90,29 @@ public class AttributeManager {
 		}		
 	}
 	/**
-	 * This metod can decrease any attribute where:
+	 * This method can decrease any attribute where:
 	 * @param otherAttributes
 	 */
-	public void extractAttributeValue(Map<GameObjectAttribute, Integer> otherAttributes){
+	public void extractAttributeValue(Map<Attribute, Integer> otherAttributes){
 		otherAttributes.forEach((k,v)-> checkAttributes(k, v));
 		otherAttributes.forEach((k,v)-> currentAttributes.replace(k, currentAttributes.get(k)-v));
+		this.removeZeroAttribute();
+	}
+	/**
+	 * This method can remove attribute where value is 0
+	 * This why need where have a temporary attribute  
+	 */
+	private void removeZeroAttribute(){
+		Iterator<Map.Entry<Attribute, Integer>>	iAttribute =  currentAttributes.entrySet().iterator();
+	
+		while(iAttribute.hasNext()){
+			Map.Entry<Attribute, Integer> current = iAttribute.next();
+			if(current.getValue() == 0)
+				iAttribute.remove();	
+		}
 	}
 	
-	
-	public int getAttributeValue(GameObjectAttribute nameAttribute){
+	public int getAttributeValue(TypeAttributes nameAttribute){
 		int value = 0;
 		if(currentAttributes.containsKey(nameAttribute)){
 			value = currentAttributes.get(nameAttribute);
@@ -110,7 +128,7 @@ public class AttributeManager {
 	 * @return boolean value is not important
 	 * If is found wrong state its throw a illegalArgumentException
 	 */
-	private boolean checkAttributes(GameObjectAttribute attribute, int value){
+	private boolean checkAttributes(Attribute attribute, int value){
 		int currentValue = currentAttributes.get(attribute)-value;
 		boolean ret = !originAttributes.entrySet().stream().filter(map-> map.getKey() == attribute && map.getValue() >  currentValue).collect(Collectors.toMap(p -> p.getKey(), p-> p.getValue())).isEmpty();
 		
@@ -128,9 +146,5 @@ public class AttributeManager {
 	
 	public String getOriginAttributes() {
 		return "Original: "+ originAttributes.toString();
-	}
-	
-	public void setOriginAttribute(GameObjectAttribute attribute, int value){
-		originAttributes.replace(attribute, value);
 	}
 }

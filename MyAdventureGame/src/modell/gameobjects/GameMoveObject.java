@@ -1,6 +1,10 @@
-package modell;
+package modell.gameobjects;
 
 import java.awt.Point;
+
+import modell.Inventory;
+
+//import modell.atributes.AttributeManager;
 
 public class GameMoveObject {
 
@@ -11,8 +15,8 @@ public class GameMoveObject {
 	private Point cordinateXY;
 	private int damage;
 	private double speed;
-	private AttributeManager attributeSystem;
-	private EquipmentManager equipmentManager;
+	//private AttributeManager attributeSystem;
+	//private EquipmentManager equipmentManager;
 	
 	public GameMoveObject() {
 		cordinateXY = new Point(0, 0);
