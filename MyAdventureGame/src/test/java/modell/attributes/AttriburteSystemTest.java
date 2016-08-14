@@ -1,4 +1,4 @@
-package modell;
+package modell.attributes;
 
 import org.junit.Before;
 import org.junit.Test;
