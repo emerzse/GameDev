@@ -6,16 +6,24 @@ import org.junit.Test;
 import modell.atributes.AttributeManager;
 import modell.attributes.templatetype.TestAttribute;
 import modell.attributes.templatetype.TypeAttributes;
-import modell.gameobjects.GameLootObject;
+import modell.gameobjects.GameObject;
 
 public class ExtractAttribute {
 	AttributeManager attribute;
+<<<<<<< HEAD:MyAdventureGame/src/test/java/modell/attributes/ExtractAttribute.java
 	GameLootObject lootObject;
 
 	@Before
 	public void initAttributeSystem(){
 		System.out.println("----------Test-init---------- ");
 		lootObject = new GameLootObject();
+=======
+	GameObject lootObject;
+	
+	@Before
+	public void initAttributeSystem(){
+		lootObject = new GameObject();
+>>>>>>> b32bbc5eb6cfd01acc186b2ef38120e802c69099:MyAdventureGame/src/test/java/modell/attributes/AttriburteSystemTest.java
 		lootObject.getAttributes().put(TypeAttributes.DEXTERY, 5);
 		lootObject.getAttributes().put(TestAttribute.FASTHAND, 5);
 		//lootObject.attributes.put(GameObjectAttribute.INTELIGENT, 5);
