@@ -68,18 +68,18 @@ public class InventoryTest {
 			inventory.addItem(iItem);
 		}
 		
-		System.out.println(inventory.toString());
+		//System.out.println(inventory.toString());
 		System.out.println("Inventory1 freeplace: "+inventory.getFreeSpace());
 		System.out.println("Inventory1 count items: "+inventory.getItems().size());
 		
 		inventory.transferAllItem(inventory2);
 		System.out.println("--------Inventory1--------");
-		System.out.println(inventory.toString());
+		//System.out.println(inventory.toString());
 		System.out.println("Inventory1 freeplace: "+inventory.getFreeSpace());
 		System.out.println("Inventory1 count items: "+inventory.getItems().size());
 		
 		System.out.println("--------Inventory2--------");
-		System.out.println(inventory2.toString());
+		//System.out.println(inventory2.toString());
 		System.out.println("Inventory2 freeplace: "+inventory2.getFreeSpace());
 		System.out.println("Inventory2 count items: "+inventory2.getItems().size());
 		
