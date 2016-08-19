@@ -5,16 +5,15 @@ import java.util.Map;
 
 import modell.atributes.Attribute;
 
-public class GameLootObject {
+public class GameObject {
 	protected Map<Attribute, Integer> attributes;
 	
-	public GameLootObject() {
+	public GameObject() {
 		attributes = new HashMap<>();
 	}
 	
 	public Map<Attribute, Integer> getAttributes() {
 		return attributes;
 	}
-
 
 }

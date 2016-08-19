@@ -4,9 +4,7 @@ import java.awt.Point;
 
 import modell.Inventory;
 
-//import modell.atributes.AttributeManager;
-
-public class GameMoveObject {
+public class GameMoveObject extends GameObject {
 
 	private String name;
 	private Inventory inventory;
@@ -15,10 +13,9 @@ public class GameMoveObject {
 	private Point cordinateXY;
 	private int damage;
 	private double speed;
-	//private AttributeManager attributeSystem;
-	//private EquipmentManager equipmentManager;
 	
 	public GameMoveObject() {
+		super();
 		cordinateXY = new Point(0, 0);
 	}
 	
@@ -53,13 +50,6 @@ public class GameMoveObject {
 	 */
 	public Inventory getInventory() {
 		return inventory;
-	}
-
-	/**
-	 * @param inventory the inventory to set
-	 */
-	public void setInventory(Inventory inventory) {
-		this.inventory = inventory;
 	}
 
 	/**

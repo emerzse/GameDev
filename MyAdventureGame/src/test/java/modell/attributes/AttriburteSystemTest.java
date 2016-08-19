@@ -6,17 +6,17 @@ import org.junit.Test;
 import modell.atributes.AttributeManager;
 import modell.attributes.templatetype.TestAttribute;
 import modell.attributes.templatetype.TypeAttributes;
-import modell.gameobjects.GameLootObject;
+import modell.gameobjects.GameObject;
 
 
 public class AttriburteSystemTest {
 
 	AttributeManager attribute;
-	GameLootObject lootObject;
+	GameObject lootObject;
 	
 	@Before
 	public void initAttributeSystem(){
-		lootObject = new GameLootObject();
+		lootObject = new GameObject();
 		lootObject.getAttributes().put(TypeAttributes.DEXTERY, 5);
 		lootObject.getAttributes().put(TestAttribute.FASTHAND, 5);
 		//lootObject.attributes.put(GameObjectAttribute.INTELIGENT, 5);
