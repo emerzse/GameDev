@@ -1,8 +1,6 @@
 package modell;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import modell.gameobjects.items.IItem;
 
 public class Inventory {
