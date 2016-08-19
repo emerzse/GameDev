@@ -8,14 +8,13 @@ import modell.attributes.templatetype.TestAttribute;
 import modell.attributes.templatetype.TypeAttributes;
 import modell.gameobjects.GameLootObject;
 
-
-public class AttriburteSystemTest {
-
+public class ExtractAttribute {
 	AttributeManager attribute;
 	GameLootObject lootObject;
-	
+
 	@Before
 	public void initAttributeSystem(){
+		System.out.println("----------Test-init---------- ");
 		lootObject = new GameLootObject();
 		lootObject.getAttributes().put(TypeAttributes.DEXTERY, 5);
 		lootObject.getAttributes().put(TestAttribute.FASTHAND, 5);
@@ -24,30 +23,38 @@ public class AttriburteSystemTest {
 		System.out.println(attribute.toString());
 	}
 	
-	//attribute changing test
-	@Test(expected = Exception.class)
-	public void changeOneAttribute() throws Exception{
-		//add attribute
-		attribute.addAttributeValue(TypeAttributes.VITALITY, 10);
+	
+	//remove attribute
+	@Test
+	public void extractAttributeValue() {
+		System.out.println("----------1-Test---------- ");
+		attribute.addAttributeValue(TypeAttributes.VITALITY, 25);
 		System.out.println(attribute.toString());
-		
-		//remove attribute
-		attribute.extractAttributeValue(TypeAttributes.VITALITY, 10);
+		attribute.extractAttributeValue(TypeAttributes.VITALITY, 25);
 		System.out.println(attribute.getOriginAttributes());
 		System.out.println(attribute.toString());
-		
-		System.out.println(attribute.getAttributeValue(TypeAttributes.DEXTERY));
-		
-		//add other map union
-		System.out.println("----------Other Map---------- ");
-		attribute.addAttributeValue(lootObject.getAttributes());
-		System.out.println(attribute.getOriginAttributes());
-		System.out.println(attribute.getAttributeValue(TypeAttributes.DEXTERY));
-		System.out.println(attribute.toString());
-		
-		attribute.extractAttributeValue(lootObject.getAttributes());
-		System.out.println(attribute.toString());
-		System.out.println(attribute.getAttributeValue(TypeAttributes.DEXTERY));
 	}
 	
+	//add other map union
+	@Test
+	public void extractAttributeValueWithMap() {
+		System.out.println("----------2-Test---------- ");
+		attribute.addAttributeValue(lootObject.getAttributes());
+		System.out.println(attribute.getOriginAttributes());
+		System.out.println(attribute.toString());
+		attribute.extractAttributeValue(lootObject.getAttributes());
+		System.out.println(attribute.toString());
+	}
+	
+	//remove attribute
+	@Test(expected = Exception.class)
+	public void extractAttributeValueEXP() {
+		System.out.println("----------3-Test---------- ");
+		attribute.addAttributeValue(TypeAttributes.VITALITY, 25);
+		System.out.println(attribute.toString());
+		attribute.extractAttributeValue(TypeAttributes.VITALITY, 35);
+		System.out.println(attribute.getOriginAttributes());
+		System.out.println(attribute.toString());
+	}
+
 }
