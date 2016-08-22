@@ -1,8 +1,11 @@
 package modell.dice;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DiceTest {
+	private static Logger logger = LoggerFactory.getLogger(DiceTest.class);
 
 @Test
 public void tryDropNumber() {
@@ -10,15 +13,15 @@ public void tryDropNumber() {
 	int found = 0;
 	int tryDrop = 0;
 	
+	
 	while(sValue != found){
 		found = Dice.diceValue(6);
 		tryDrop++;
-		System.out.println(found);
+		logger.info(""+found);
 	}
 	
-	System.out.println("---------------");
-	System.out.println(tryDrop);
-	System.out.println(sValue == found);
+	logger.info("---------------");
+	logger.info(""+tryDrop);
 }
 	
 	
