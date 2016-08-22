@@ -6,15 +6,17 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import modell.attributes.templatetype.TypeAttributes;
+import modell.gameobjects.items.IItem;
 
 /**
  * This class is manage the attribute in game of characters.
  * example the player, enemy, npc
  */
-public class AttributeManager {
+public class AttributeManager implements ObservAttribute{
 
 	private HashMap<Attribute, Integer> originAttributes;
 	private HashMap<Attribute, Integer> currentAttributes;
+	private AttributeListening attributeListening;
 	
    /**
 	*Default init values to attribute
@@ -47,6 +49,47 @@ public class AttributeManager {
 	}
 	
 	public AttributeManager(Map<Attribute, Integer> patternAttribute){
+		originAttributes = new HashMap<>(patternAttribute); 
+		currentAttributes = new HashMap<>(originAttributes);
+	}
+	/**
+	*Default init values to attribute
+	*This constructor is initialization default attribute in GameObjectAttributeSystem object.
+	*@param a
+	*Two map is fill up one origin and one current attribute map. 
+	*/
+	public AttributeManager(AttributeListening a) {
+		this.attributeListening = a;
+		this.attributeListening.attach(this);
+		originAttributes =  new HashMap<>();
+		originAttributes.put(TypeAttributes.VITALITY, 1);
+		originAttributes.put(TypeAttributes.STRENGHT, 1);
+		originAttributes.put(TypeAttributes.DEXTERY, 1);
+		currentAttributes = new HashMap<>(originAttributes);
+	}
+	/**
+	 * Set for parameters to attribute value
+	 * This constructor is initialization this parameters:
+	 * @param vitality
+	 * @param strenght
+	 * @param dextery
+	 * @param a
+	 * in GameObjectAttributeSystem object.
+	 * Two map is fill up one origin and one current attribute map.
+	 */
+	public AttributeManager(AttributeListening a, int vitality, int strenght, int dextery) {
+		this.attributeListening = a;
+		this.attributeListening.attach(this);
+		originAttributes =  new HashMap<>();
+		originAttributes.put(TypeAttributes.VITALITY, vitality);
+		originAttributes.put(TypeAttributes.STRENGHT, strenght);
+		originAttributes.put(TypeAttributes.DEXTERY, dextery);
+		currentAttributes = new HashMap<>(originAttributes);
+	}
+	
+	public AttributeManager(AttributeListening a,Map<Attribute, Integer> patternAttribute){
+		this.attributeListening = a;
+		this.attributeListening.attach(this);
 		originAttributes = new HashMap<>(patternAttribute); 
 		currentAttributes = new HashMap<>(originAttributes);
 	}
@@ -146,5 +189,16 @@ public class AttributeManager {
 	
 	public String getOriginAttributes() {
 		return "Original: "+ originAttributes.toString();
+	}
+
+	@Override
+	public void updateAdd() {
+		attributeListening.getCollection().forEach(i-> this.addAttributeValue(i.getAttributes()));
+	}
+
+	@Override
+	public void updateExtract(IItem item) {
+		this.extractAttributeValue(item.getAttributes());
+		
 	}
 }
