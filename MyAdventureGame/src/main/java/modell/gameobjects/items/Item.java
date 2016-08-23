@@ -1,5 +1,8 @@
 package modell.gameobjects.items;
 
+import java.util.Map;
+
+import modell.atributes.Attribute;
 import modell.gameobjects.GameObject;
 
 public class Item extends GameObject implements IItem{
@@ -11,6 +14,29 @@ public class Item extends GameObject implements IItem{
 		if(scale == 0)
 			throw new NullPointerException();
 		this.scale = scale;
+	}
+	
+	public Item(int scale, Map<Attribute, Integer> attributes) {
+		super(attributes);
+		if(scale == 0)
+			throw new NullPointerException();
+		this.scale = scale;
+	}
+	
+	public Item(int scale,String name) {
+		super();
+		if(scale == 0)
+			throw new NullPointerException();
+		this.scale = scale;
+		this.name = name;
+	}
+	
+	public Item(int scale,String name, Map<Attribute, Integer> attributes) {
+		super(attributes);
+		if(scale == 0)
+			throw new NullPointerException();
+		this.scale = scale;
+		this.name = name;
 	}
 
 	public int getScale() {

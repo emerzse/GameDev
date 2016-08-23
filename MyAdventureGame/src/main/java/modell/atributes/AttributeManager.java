@@ -5,8 +5,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import modell.attributes.templatetype.TypeAttributes;
-import modell.gameobjects.items.IItem;
 
 /**
  * This class is manage the attribute in game of characters.
@@ -14,9 +15,10 @@ import modell.gameobjects.items.IItem;
  */
 public class AttributeManager implements ObservAttribute{
 
-	private HashMap<Attribute, Integer> originAttributes;
-	private HashMap<Attribute, Integer> currentAttributes;
+	private Map<Attribute, Integer> originAttributes;
+	private Map<Attribute, Integer> currentAttributes;
 	private AttributeListening attributeListening;
+	private static Logger logger = LoggerFactory.getLogger(AttributeManager.class);
 	
    /**
 	*Default init values to attribute
@@ -128,7 +130,7 @@ public class AttributeManager implements ObservAttribute{
 	public void extractAttributeValue(Attribute nameAttribute, int newValue){
 		if(currentAttributes.containsKey(nameAttribute)){
 			int currentValue = currentAttributes.get(nameAttribute);
-			this.checkAttributes(nameAttribute,newValue);
+			//this.checkAttributes(nameAttribute,newValue);
 			currentAttributes.replace(nameAttribute, currentValue - newValue);			
 		}		
 	}
@@ -137,7 +139,9 @@ public class AttributeManager implements ObservAttribute{
 	 * @param otherAttributes
 	 */
 	public void extractAttributeValue(Map<Attribute, Integer> otherAttributes){
-		otherAttributes.forEach((k,v)-> checkAttributes(k, v));
+		//otherAttributes.forEach((k,v)-> checkAttributes(k, v));
+		logger.info("------"+otherAttributes.toString()+"\n"
+				+currentAttributes.toString());
 		otherAttributes.forEach((k,v)-> currentAttributes.replace(k, currentAttributes.get(k)-v));
 		this.removeZeroAttribute();
 	}
@@ -171,16 +175,16 @@ public class AttributeManager implements ObservAttribute{
 	 * @return boolean value is not important
 	 * If is found wrong state its throw a illegalArgumentException
 	 */
-	private boolean checkAttributes(Attribute attribute, int value){
-		int currentValue = currentAttributes.get(attribute)-value;
-		boolean ret = !originAttributes.entrySet().stream().filter(map-> map.getKey() == attribute && map.getValue() >  currentValue).collect(Collectors.toMap(p -> p.getKey(), p-> p.getValue())).isEmpty();
-		
-		if(ret){
-			throw new IllegalArgumentException("The current value not possible less than origin value. Attribute: "+attribute+" and illegal value: "+value);
-		}
-		
-		return ret;
-	}
+//	private boolean checkAttributes(Attribute attribute, int value){
+//		int currentValue = currentAttributes.get(attribute)-value;
+//		boolean ret = !originAttributes.entrySet().stream().filter(map-> map.getKey() == attribute && map.getValue() >  currentValue).collect(Collectors.toMap(p -> p.getKey(), p-> p.getValue())).isEmpty();
+//		ret = ret;
+//		if(ret){
+//			throw new IllegalArgumentException("The current value not possible less than origin value. Attribute: "+attribute+" and illegal value: "+value);
+//		}
+//		
+//		return ret;
+//	}
 	
 	@Override
 	public String toString() {
@@ -192,13 +196,14 @@ public class AttributeManager implements ObservAttribute{
 	}
 
 	@Override
-	public void updateAdd() {
-		attributeListening.getCollection().forEach(i-> this.addAttributeValue(i.getAttributes()));
+	public void updateAdd(Map<Attribute, Integer> itemAtrMap) {
+		//attributeListening.getCollection().forEach(i-> this.addAttributeValue(i.getAttributes()));
+		this.addAttributeValue(itemAtrMap);
 	}
 
 	@Override
-	public void updateExtract(IItem item) {
-		this.extractAttributeValue(item.getAttributes());
+	public void updateExtract(Map<Attribute, Integer> itemAtrMap) {
+		this.extractAttributeValue(itemAtrMap);
 		
 	}
 }

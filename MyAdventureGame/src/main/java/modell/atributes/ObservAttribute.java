@@ -1,8 +1,8 @@
 package modell.atributes;
 
-import modell.gameobjects.items.IItem;
+import java.util.Map;
 
 public interface ObservAttribute {
-	public void updateAdd();
-	public void updateExtract(IItem item);
+	public void updateAdd(Map<Attribute, Integer> itemAtrMap);
+	public void updateExtract(Map<Attribute, Integer> itemAtrMap);
 }

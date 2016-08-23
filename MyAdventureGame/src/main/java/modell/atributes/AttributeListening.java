@@ -17,15 +17,15 @@ protected void attach(ObservAttribute observer) {
 	observers.add(observer);
 }
 
-protected void addAllObservers() {
+protected void addAllObservers(IItem item) {
 	for (ObservAttribute observAttribute : observers) {
-		observAttribute.updateAdd();
+		observAttribute.updateAdd(item.getAttributes());
 	}
 }
 
 protected void extractAllObservers(IItem item) {
 	for (ObservAttribute observAttribute : observers) {
-		observAttribute.updateExtract(item);
+		observAttribute.updateExtract(item.getAttributes());
 	}
 }
 

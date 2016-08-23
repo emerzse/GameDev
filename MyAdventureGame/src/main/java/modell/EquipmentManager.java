@@ -1,5 +1,6 @@
 package modell;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import modell.atributes.AttributeListening;
@@ -11,6 +12,7 @@ public class EquipmentManager extends AttributeListening{
 	
 	public EquipmentManager(int eqSlot) {
 		this.eqSlot = eqSlot;
+		equipments = new HashSet<>();
 	}
 
 	public Set<IItem> getEquipments() {
@@ -19,11 +21,25 @@ public class EquipmentManager extends AttributeListening{
 
 	@Override
 	public void addItem(IItem item) {
-		if(item!=null && eqSlot >= equipments.size())
-			equipments.add(item);
-		addAllObservers();
+		if(eqSlot-1 < equipments.size())
+			throw new IndexOutOfBoundsException();
+		
+	    equipments.add(item);
+		addAllObservers(item);
 	}
 
+	public void addItem(Set<IItem> eqIItems){
+		eqIItems.forEach((IItem i)->{
+			this.addItem(i);
+		});
+	}
+	public void extractAllItem(){
+		for (IItem iItem : equipments) {
+			extractAllObservers(iItem);	
+		}
+		equipments.clear();
+	}
+	
 	@Override
 	public Set<IItem> getCollection() {
 		return equipments;

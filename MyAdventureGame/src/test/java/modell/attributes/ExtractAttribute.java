@@ -22,7 +22,7 @@ public class ExtractAttribute {
 		lootObject.getAttributes().put(TypeAttributes.DEXTERY, 5);
 		lootObject.getAttributes().put(TestAttribute.FASTHAND, 5);
 		//lootObject.attributes.put(GameObjectAttribute.INTELIGENT, 5);
-		attribute = new AttributeManager(10, 11, 9);
+		attribute = new AttributeManager(10, 10, 10);
 		logger.info(attribute.toString());
 	}
 	
@@ -55,7 +55,7 @@ public class ExtractAttribute {
 		logger.info("----------3-Test---------- ");
 		attribute.addAttributeValue(TypeAttributes.VITALITY, 25);
 		logger.info(attribute.toString());
-		attribute.extractAttributeValue(TypeAttributes.VITALITY, 35);
+		attribute.extractAttributeValue(TypeAttributes.VITALITY, 45);
 		logger.info(attribute.getOriginAttributes());
 		logger.info(attribute.toString());
 	}

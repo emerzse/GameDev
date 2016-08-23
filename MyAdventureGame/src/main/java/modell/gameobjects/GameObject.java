@@ -12,6 +12,10 @@ public class GameObject {
 		attributes = new HashMap<>();
 	}
 	
+	public GameObject(Map<Attribute, Integer> attributes) {
+		this.attributes = attributes;
+	}
+	
 	public Map<Attribute, Integer> getAttributes() {
 		return attributes;
 	}
