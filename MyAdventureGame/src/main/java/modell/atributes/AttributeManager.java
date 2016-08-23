@@ -3,10 +3,7 @@ package modell.atributes;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import modell.attributes.templatetype.TypeAttributes;
 
 /**
@@ -18,7 +15,6 @@ public class AttributeManager implements ObservAttribute{
 	private Map<Attribute, Integer> originAttributes;
 	private Map<Attribute, Integer> currentAttributes;
 	private AttributeListening attributeListening;
-	private static Logger logger = LoggerFactory.getLogger(AttributeManager.class);
 	
    /**
 	*Default init values to attribute
@@ -131,7 +127,8 @@ public class AttributeManager implements ObservAttribute{
 		if(currentAttributes.containsKey(nameAttribute)){
 			int currentValue = currentAttributes.get(nameAttribute);
 			//this.checkAttributes(nameAttribute,newValue);
-			currentAttributes.replace(nameAttribute, currentValue - newValue);			
+			currentAttributes.replace(nameAttribute, currentValue - newValue);
+			this.removeZeroAttribute();
 		}		
 	}
 	/**
@@ -140,8 +137,6 @@ public class AttributeManager implements ObservAttribute{
 	 */
 	public void extractAttributeValue(Map<Attribute, Integer> otherAttributes){
 		//otherAttributes.forEach((k,v)-> checkAttributes(k, v));
-		logger.info("------"+otherAttributes.toString()+"\n"
-				+currentAttributes.toString());
 		otherAttributes.forEach((k,v)-> currentAttributes.replace(k, currentAttributes.get(k)-v));
 		this.removeZeroAttribute();
 	}
@@ -154,7 +149,7 @@ public class AttributeManager implements ObservAttribute{
 	
 		while(iAttribute.hasNext()){
 			Map.Entry<Attribute, Integer> current = iAttribute.next();
-			if(current.getValue() == 0)
+			if(current.getValue() == 0 && !originAttributes.containsKey(current.getKey()))
 				iAttribute.remove();	
 		}
 	}

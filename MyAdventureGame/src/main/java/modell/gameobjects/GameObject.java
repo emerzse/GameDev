@@ -13,7 +13,12 @@ public class GameObject {
 	}
 	
 	public GameObject(Map<Attribute, Integer> attributes) {
-		this.attributes = attributes;
+		if(attributes !=null){
+			this.attributes = attributes;
+		}
+		else {
+			attributes = new HashMap<>();
+		}
 	}
 	
 	public Map<Attribute, Integer> getAttributes() {

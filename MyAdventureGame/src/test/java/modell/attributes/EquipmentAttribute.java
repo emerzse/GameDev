@@ -116,4 +116,43 @@ public class EquipmentAttribute {
 		
 	}
 	
+	//bug fixed
+	@Test
+	public void bug3SomeWhereHaveNullPoint(){
+		Map<Attribute, Integer> headArt = new HashMap<>();
+		headArt.put(TypeAttributes.STRENGHT, 1);
+		
+		Item head = new Item(1,"head", headArt);
+		
+		Map<Attribute, Integer> chestArt = new HashMap<>();
+		chestArt.put(TypeAttributes.INTELIGENT, -25);
+		Item chest = new Item(6,"chest", chestArt);
+		
+		Item gloves = new Item(2,"gloves");
+		
+		Map<Attribute, Integer> weaponArt = new HashMap<>();
+		weaponArt.put(TypeAttributes.STRENGHT, -11);
+		Item weapon = new Item(3,"weapon", weaponArt);
+		
+		Item medal = new Item(1,"medal");
+		
+		Set<IItem> eqIitems = new HashSet<>(Arrays.asList(head,chest,gloves,weapon,medal));
+		
+		eqManager.addItem(eqIitems);
+		
+		logger.info("Fill up equipment attribute change: \n"+attriManager.toString());
+		//Set<IItem> removeItems = new HashSet<>(eqManager.getEquipments());
+		
+		logger.info("all \n"
+	              +"equipment now:\n"+eqManager.getEquipments().toString());
+		
+		eqManager.extractAllItem();
+		
+		logger.info("remove: all items After:\n"
+							  +attriManager.toString()+"\n"
+				              +"the remove item properties: "+eqIitems.toString()+"\n"
+				              +"equipment now:\n"+eqManager.getEquipments().toString());
+		
+	}
+	
 }
