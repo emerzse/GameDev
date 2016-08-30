@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import modell.Inventory;
+import modell.atributes.Attribute;
 import modell.attributes.templatetype.TypeAttributes;
 import modell.dice.Dice;
 import modell.gameobjects.items.IItem;
@@ -36,7 +37,7 @@ public class InventoryTest {
 			
 			int countAttriboute = new Random().nextInt(5);
 			for (int j = 0; j < countAttriboute; j++) {
-				item.getAttributes().put(TypeAttributes.RANDOM.random(), new Random().nextInt(40-1)+1);
+				item.getAttributes().put(Attribute.random(TypeAttributes.class), new Random().nextInt(40-1)+1);
 			}
 			
 			items.add(item);
@@ -119,7 +120,7 @@ public class InventoryTest {
 		Weapon w = new Weapon(3);
 		w.setName("sword");
 		w.setDmg(30);
-		w.getAttributes().put(TypeAttributes.RANDOM.random(), new Random().nextInt(40-1)+1);
+		w.getAttributes().put(Attribute.random(TypeAttributes.class), new Random().nextInt(40-1)+1);
 		inventory.addItem(w);
 		
 		logger.info("--------Inventory1--------");

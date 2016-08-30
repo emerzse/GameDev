@@ -1,6 +1,15 @@
 package modell.atributes;
 
-public interface Attribute {
+import java.util.Random;
 
-	public Attribute random();
+public interface Attribute {
+	
+	public static  <T extends Enum<T>> Attribute random(Class<T> enumType) {
+        
+		T[] attrSet = enumType.getEnumConstants();
+		
+		int i =  attrSet.length;
+				
+        return (Attribute) attrSet[new Random().nextInt(i)];
+	}
 }

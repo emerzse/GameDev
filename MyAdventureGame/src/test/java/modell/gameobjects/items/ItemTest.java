@@ -5,6 +5,8 @@ import java.util.Random;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import modell.atributes.Attribute;
 import modell.attributes.templatetype.TypeAttributes;
 
 public class ItemTest {
@@ -26,7 +28,7 @@ public class ItemTest {
 		
 		int countAttriboute = new Random().nextInt(5);
 		for (int j = 0; j < countAttriboute; j++) {
-			item.getAttributes().put(TypeAttributes.RANDOM.random(), new Random().nextInt(40-1)+1);
+			item.getAttributes().put(Attribute.random(TypeAttributes.class), new Random().nextInt(40-1)+1);
 		}
 		
 		logger.info(item.toString());

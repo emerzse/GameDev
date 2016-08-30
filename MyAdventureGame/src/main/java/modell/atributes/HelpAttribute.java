@@ -13,7 +13,7 @@ public class HelpAttribute {
 		Map<Attribute, Integer> result = new HashMap<>();
 		
 		for (int i = 0; i < new Random().nextInt(TypeAttributes.values().length-1); i++) {
-			result.put(TypeAttributes.RANDOM.random(),randomNumber());
+			result.put(Attribute.random(TypeAttributes.class),randomNumber());
 		}
 		
 		return result;
