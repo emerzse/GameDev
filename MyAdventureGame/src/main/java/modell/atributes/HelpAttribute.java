@@ -1,10 +1,10 @@
 package modell.atributes;
 
+import modell.attributes.templatetype.TypeAttributes;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-
-import modell.attributes.templatetype.TypeAttributes;
 
 public class HelpAttribute {
 

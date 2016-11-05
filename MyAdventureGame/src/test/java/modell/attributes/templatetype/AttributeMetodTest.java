@@ -1,12 +1,10 @@
 package modell.attributes.templatetype;
 
+import modell.atributes.Attribute;
+import modell.inventory.InventoryTest;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import modell.atributes.Attribute;
-import modell.inventory.InventoryTest;
-import static org.junit.Assert.*;
 
 public class AttributeMetodTest {
 	private static Logger logger = LoggerFactory.getLogger(InventoryTest.class);

@@ -1,9 +1,9 @@
 package modell.atributes;
 
+import modell.gameobjects.items.IItem;
+
 import java.util.ArrayList;
 import java.util.Set;
-
-import modell.gameobjects.items.IItem;
 
 public abstract class AttributeListening {
 	

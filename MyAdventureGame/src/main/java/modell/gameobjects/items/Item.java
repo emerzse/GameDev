@@ -1,9 +1,9 @@
 package modell.gameobjects.items;
 
-import java.util.Map;
-
 import modell.atributes.Attribute;
 import modell.gameobjects.GameObject;
+
+import java.util.Map;
 
 public class Item extends GameObject implements IItem{
 	private int scale;

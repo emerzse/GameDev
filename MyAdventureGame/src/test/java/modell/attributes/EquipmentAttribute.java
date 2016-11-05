@@ -1,16 +1,5 @@
 package modell.attributes;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import modell.EquipmentManager;
 import modell.atributes.Attribute;
 import modell.atributes.AttributeManager;
@@ -18,6 +7,12 @@ import modell.atributes.HelpAttribute;
 import modell.attributes.templatetype.TypeAttributes;
 import modell.gameobjects.items.IItem;
 import modell.gameobjects.items.Item;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.*;
 
 public class EquipmentAttribute {
 	private static Logger logger = LoggerFactory.getLogger(EquipmentAttribute.class);

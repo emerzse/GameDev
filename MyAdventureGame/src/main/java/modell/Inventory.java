@@ -1,7 +1,8 @@
 package modell;
 
-import java.util.ArrayList;
 import modell.gameobjects.items.IItem;
+
+import java.util.ArrayList;
 
 public class Inventory {
 	private int freeSpace;

@@ -1,8 +1,8 @@
 package modell.gameobjects.items;
 
-import java.util.Map;
-
 import modell.atributes.Attribute;
+
+import java.util.Map;
 
 public interface IItem {
 	public int getScale();

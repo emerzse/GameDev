@@ -1,20 +1,19 @@
 package modell.inventory;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import modell.Inventory;
 import modell.atributes.Attribute;
 import modell.attributes.templatetype.TypeAttributes;
 import modell.dice.Dice;
 import modell.gameobjects.items.IItem;
 import modell.gameobjects.items.Item;
-import modell.gameobjects.items.Weapon;
+import modell.gameobjects.items.TestWeapon;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class InventoryTest {
 	
@@ -117,7 +116,7 @@ public class InventoryTest {
 	@Test
 	public void testInventoryWeapon() {
 		logger.info("--------Test4--------");
-		Weapon w = new Weapon(3);
+		TestWeapon w = new TestWeapon(3);
 		w.setName("sword");
 		w.setDmg(30);
 		w.getAttributes().put(Attribute.random(TypeAttributes.class), new Random().nextInt(40-1)+1);

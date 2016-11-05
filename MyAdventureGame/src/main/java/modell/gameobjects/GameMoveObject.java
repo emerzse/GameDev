@@ -1,8 +1,8 @@
 package modell.gameobjects;
 
-import java.awt.Point;
-
 import modell.Inventory;
+
+import java.awt.*;
 
 public class GameMoveObject extends GameObject {
 

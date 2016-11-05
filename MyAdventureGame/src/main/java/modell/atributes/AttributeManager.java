@@ -1,10 +1,10 @@
 package modell.atributes;
 
+import modell.attributes.templatetype.TypeAttributes;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
-import modell.attributes.templatetype.TypeAttributes;
 
 /**
  * This class is manage the attribute in game of characters.
@@ -99,7 +99,7 @@ public class AttributeManager implements ObservAttribute{
 	 * @param newValue add to the found attribute's value
 	 */
 	public void addAttributeValue(Attribute nameAttribute, int newValue){
-		if(currentAttributes.containsKey(nameAttribute)   ){
+		if(currentAttributes.containsKey(nameAttribute)){
 			int currentValue = currentAttributes.get(nameAttribute);
 		    currentAttributes.replace(nameAttribute, currentValue + newValue);
 		}		

@@ -1,13 +1,12 @@
 package modell.gameobjects.items;
 
-import java.util.Random;
-
+import modell.atributes.Attribute;
+import modell.attributes.templatetype.TypeAttributes;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import modell.atributes.Attribute;
-import modell.attributes.templatetype.TypeAttributes;
+import java.util.Random;
 
 public class ItemTest {
 

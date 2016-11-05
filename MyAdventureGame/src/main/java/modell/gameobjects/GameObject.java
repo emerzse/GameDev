@@ -1,9 +1,9 @@
 package modell.gameobjects;
 
+import modell.atributes.Attribute;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import modell.atributes.Attribute;
 
 public class GameObject {
 	protected Map<Attribute, Integer> attributes;

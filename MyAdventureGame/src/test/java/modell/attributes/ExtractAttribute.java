@@ -1,14 +1,13 @@
 package modell.attributes;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import modell.atributes.AttributeManager;
 import modell.attributes.templatetype.TestAttribute;
 import modell.attributes.templatetype.TypeAttributes;
 import modell.gameobjects.GameObject;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ExtractAttribute {
 	AttributeManager attribute;
