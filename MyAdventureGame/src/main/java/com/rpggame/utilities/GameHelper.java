@@ -11,11 +11,11 @@ public class GameHelper {
 
     public static Random randomNumGen = new Random();
 
-    public static int diceValue(int valueLimit){
-        return randomNumGen.nextInt(valueLimit-1)+1;
+    public static int diceValue(int valueLimit) {
+        return randomNumGen.nextInt(valueLimit - 1) + 1;
     }
 
-    public static<T extends  Enum<T>> Attribute randomAttribute(Class<T> attributeType) {
+    public static <T extends Enum<T>> Attribute randomAttribute(Class<T> attributeType) {
         return Attribute.randomAttribute(attributeType);
     }
 }
