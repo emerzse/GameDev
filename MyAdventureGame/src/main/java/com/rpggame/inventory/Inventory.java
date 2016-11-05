@@ -1,6 +1,6 @@
-package modell;
+package com.rpggame.inventory;
 
-import modell.gameobjects.items.IItem;
+import com.rpggame.item.IItem;
 
 import java.util.ArrayList;
 

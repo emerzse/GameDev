@@ -1,12 +1,13 @@
-package modell;
+package com.rpggame.equipment;
 
-import modell.atributes.AttributeListening;
-import modell.gameobjects.items.IItem;
+
+import com.rpggame.attributes.AttributeListening;
+import com.rpggame.item.IItem;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class EquipmentManager extends AttributeListening{
+public class EquipmentManager extends AttributeListening {
 	private Set<IItem> equipments;
 	private int eqSlot;
 	

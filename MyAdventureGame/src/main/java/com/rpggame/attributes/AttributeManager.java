@@ -1,6 +1,4 @@
-package modell.atributes;
-
-import modell.attributes.templatetype.TypeAttributes;
+package com.rpggame.attributes;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -10,7 +8,7 @@ import java.util.Map;
  * This class is manage the attribute in game of characters.
  * example the player, enemy, npc
  */
-public class AttributeManager implements ObservAttribute{
+public class AttributeManager implements ObserveAttribute {
 
 	private Map<Attribute, Integer> originAttributes;
 	private Map<Attribute, Integer> currentAttributes;
@@ -23,65 +21,12 @@ public class AttributeManager implements ObservAttribute{
 	*/
 	public AttributeManager() {
 		originAttributes =  new HashMap<>();
-		originAttributes.put(TypeAttributes.VITALITY, 1);
-		originAttributes.put(TypeAttributes.STRENGHT, 1);
-		originAttributes.put(TypeAttributes.DEXTERY, 1);
-		currentAttributes = new HashMap<>(originAttributes);
-	}
-	
-	/**
-	 * Set for parameters to attribute value
-	 * This constructor is initialization this parameters:
-	 * @param vitality
-	 * @param strenght
-	 * @param dextery
-	 * in GameObjectAttributeSystem object.
-	 * Two map is fill up one origin and one current attribute map.
-	 */
-	public AttributeManager(int vitality, int strenght, int dextery) {
-		originAttributes =  new HashMap<>();
-		originAttributes.put(TypeAttributes.VITALITY, vitality);
-		originAttributes.put(TypeAttributes.STRENGHT, strenght);
-		originAttributes.put(TypeAttributes.DEXTERY, dextery);
+
 		currentAttributes = new HashMap<>(originAttributes);
 	}
 	
 	public AttributeManager(Map<Attribute, Integer> patternAttribute){
 		originAttributes = new HashMap<>(patternAttribute); 
-		currentAttributes = new HashMap<>(originAttributes);
-	}
-	/**
-	*Default init values to attribute
-	*This constructor is initialization default attribute in GameObjectAttributeSystem object.
-	*@param a
-	*Two map is fill up one origin and one current attribute map. 
-	*/
-	public AttributeManager(AttributeListening a) {
-		this.attributeListening = a;
-		this.attributeListening.attach(this);
-		originAttributes =  new HashMap<>();
-		originAttributes.put(TypeAttributes.VITALITY, 1);
-		originAttributes.put(TypeAttributes.STRENGHT, 1);
-		originAttributes.put(TypeAttributes.DEXTERY, 1);
-		currentAttributes = new HashMap<>(originAttributes);
-	}
-	/**
-	 * Set for parameters to attribute value
-	 * This constructor is initialization this parameters:
-	 * @param vitality
-	 * @param strenght
-	 * @param dextery
-	 * @param a
-	 * in GameObjectAttributeSystem object.
-	 * Two map is fill up one origin and one current attribute map.
-	 */
-	public AttributeManager(AttributeListening a, int vitality, int strenght, int dextery) {
-		this.attributeListening = a;
-		this.attributeListening.attach(this);
-		originAttributes =  new HashMap<>();
-		originAttributes.put(TypeAttributes.VITALITY, vitality);
-		originAttributes.put(TypeAttributes.STRENGHT, strenght);
-		originAttributes.put(TypeAttributes.DEXTERY, dextery);
 		currentAttributes = new HashMap<>(originAttributes);
 	}
 	
@@ -153,33 +98,20 @@ public class AttributeManager implements ObservAttribute{
 				iAttribute.remove();	
 		}
 	}
-	
-	public int getAttributeValue(TypeAttributes nameAttribute){
+
+	/**
+	 * This metod get the selected attribute value
+	 * @param nameAttribute
+	 * @param <T>
+	 * @return
+	 */
+	public<T extends Enum<T> & Attribute> int getAttributeValue(T nameAttribute){
 		int value = 0;
 		if(currentAttributes.containsKey(nameAttribute)){
 			value = currentAttributes.get(nameAttribute);
 		}
-		
 		return value;
 	}
-	
-	/**
-	 * Check the attribute value where the new change value is less than origin value
-	 * @param attribute: searching the examine attribute
-	 * @param value: this value changing the current value 
-	 * @return boolean value is not important
-	 * If is found wrong state its throw a illegalArgumentException
-	 */
-//	private boolean checkAttributes(Attribute attribute, int value){
-//		int currentValue = currentAttributes.get(attribute)-value;
-//		boolean ret = !originAttributes.entrySet().stream().filter(map-> map.getKey() == attribute && map.getValue() >  currentValue).collect(Collectors.toMap(p -> p.getKey(), p-> p.getValue())).isEmpty();
-//		ret = ret;
-//		if(ret){
-//			throw new IllegalArgumentException("The current value not possible less than origin value. Attribute: "+attribute+" and illegal value: "+value);
-//		}
-//		
-//		return ret;
-//	}
 	
 	@Override
 	public String toString() {

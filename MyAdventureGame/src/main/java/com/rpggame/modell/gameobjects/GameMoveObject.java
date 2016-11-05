@@ -1,8 +1,8 @@
-package modell.gameobjects;
+package com.rpggame.modell.gameobjects;
 
-import modell.Inventory;
+import com.rpggame.inventory.Inventory;
 
-import java.awt.*;
+import java.awt.Point;
 
 public class GameMoveObject extends GameObject {
 
@@ -10,13 +10,13 @@ public class GameMoveObject extends GameObject {
 	private Inventory inventory;
 	private int hitPoint;
 	private int armor;
-	private Point cordinateXY;
+	private Point coordinateXY;
 	private int damage;
 	private double speed;
 	
 	public GameMoveObject() {
 		super();
-		cordinateXY = new Point(0, 0);
+		coordinateXY = new Point(0, 0);
 	}
 	
 	public void move(){
@@ -81,17 +81,17 @@ public class GameMoveObject extends GameObject {
 	}
 
 	/**
-	 * @return the cordinateXY
+	 * @return the coordinateXY
 	 */
-	public Point getCordinateXY() {
-		return cordinateXY;
+	public Point getCoordinateXY() {
+		return coordinateXY;
 	}
 
 	/**
-	 * @param cordinateXY the cordinateXY to set
+	 * @param coordinateXY the coordinateXY to set
 	 */
-	public void setCordinateXY(Point cordinateXY) {
-		this.cordinateXY = cordinateXY;
+	public void setCoordinateXY(Point coordinateXY) {
+		this.coordinateXY = coordinateXY;
 	}
 
 	/**

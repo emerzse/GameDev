@@ -1,7 +1,8 @@
-package modell.gameobjects.items;
+package com.rpggame.item;
 
-import modell.atributes.Attribute;
-import modell.gameobjects.GameObject;
+
+import com.rpggame.attributes.Attribute;
+import com.rpggame.modell.gameobjects.GameObject;
 
 import java.util.Map;
 

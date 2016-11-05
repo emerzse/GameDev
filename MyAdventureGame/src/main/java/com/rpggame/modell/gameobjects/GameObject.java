@@ -1,7 +1,6 @@
-package modell.gameobjects;
+package com.rpggame.modell.gameobjects;
 
-import modell.atributes.Attribute;
-
+import com.rpggame.attributes.Attribute;
 import java.util.HashMap;
 import java.util.Map;
 
