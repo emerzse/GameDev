@@ -21,7 +21,6 @@ public class AttributeManager implements ObserveAttribute {
 	*/
 	public AttributeManager() {
 		originAttributes =  new HashMap<>();
-
 		currentAttributes = new HashMap<>(originAttributes);
 	}
 	
