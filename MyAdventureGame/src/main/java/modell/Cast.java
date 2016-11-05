@@ -1,5 +1,5 @@
 package modell;
 
 public enum Cast {
-PACKMAN
+PACKMAN, THINMAN
 }
