@@ -48,10 +48,9 @@ public class testEquipmentManager {
 
         equipmentManager.addItem(itemSet);
         GameHelper.logger.info(defaultAttributeManager.toString()+"\n; "+defaultAttributeManager.getOriginAttributes());
+        GameHelper.logger.info(equipmentManager.getCollection().toString());
         GameHelper.logger.info("now take down:");
         equipmentManager.extractAllItem();
         GameHelper.logger.info("==="+defaultAttributeManager.toString()+"\n; "+defaultAttributeManager.getOriginAttributes());
-
-
     }
 }
