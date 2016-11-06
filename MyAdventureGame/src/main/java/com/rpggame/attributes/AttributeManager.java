@@ -1,11 +1,14 @@
 package com.rpggame.attributes;
 
+import com.rpggame.utilities.GameHelper;
+import org.slf4j.Logger;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 /**
- * This class is manage the attribute in game of characters.
+ * This class is manage the attribute in game of characters and else.
  * example the player, enemy, npc
  */
 public class AttributeManager implements ObserveAttribute {
@@ -49,6 +52,9 @@ public class AttributeManager implements ObserveAttribute {
             int currentValue = currentAttributes.get(nameAttribute);
             currentAttributes.replace(nameAttribute, currentValue + newValue);
         }
+        else {
+            currentAttributes.put(nameAttribute, newValue);
+        }
     }
 
     /**
@@ -57,8 +63,6 @@ public class AttributeManager implements ObserveAttribute {
      * @param map
      */
     public void addAttributeValue(Map<Attribute, Integer> map) {
-
-        //	currentAttributes.compute(key, remappingFunction)
         map.forEach((Attribute k, Integer v) -> {
             currentAttributes.compute(k, (Attribute oldK, Integer oldV) -> {
                 return oldV != null ? oldV + v : v;
@@ -75,7 +79,6 @@ public class AttributeManager implements ObserveAttribute {
     public void extractAttributeValue(Attribute nameAttribute, int newValue) {
         if (currentAttributes.containsKey(nameAttribute)) {
             int currentValue = currentAttributes.get(nameAttribute);
-            //this.checkAttributes(nameAttribute,newValue);
             currentAttributes.replace(nameAttribute, currentValue - newValue);
             this.removeZeroAttribute();
         }
@@ -108,7 +111,6 @@ public class AttributeManager implements ObserveAttribute {
 
     /**
      * This metod get the selected attribute value
-     *
      * @param nameAttribute
      * @param <T>
      * @return
@@ -117,6 +119,9 @@ public class AttributeManager implements ObserveAttribute {
         int value = 0;
         if (currentAttributes.containsKey(nameAttribute)) {
             value = currentAttributes.get(nameAttribute);
+        }
+        else {
+            throw new IllegalArgumentException("This Argument not have: "+nameAttribute);
         }
         return value;
     }
