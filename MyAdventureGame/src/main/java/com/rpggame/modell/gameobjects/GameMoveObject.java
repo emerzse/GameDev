@@ -2,117 +2,117 @@ package com.rpggame.modell.gameobjects;
 
 import com.rpggame.inventory.Inventory;
 
-import java.awt.Point;
+import java.awt.*;
 
 public class GameMoveObject extends GameObject {
 
-	private String name;
-	private Inventory inventory;
-	private int hitPoint;
-	private int armor;
-	private Point coordinateXY;
-	private int damage;
-	private double speed;
-	
-	public GameMoveObject() {
-		super();
-		coordinateXY = new Point(0, 0);
-	}
-	
-	public void move(){
-		
-	}
-	
-	public void attack(){
-		
-	}
-	
-	public void spell(){
-		
-	}
+    private String name;
+    private Inventory inventory;
+    private int hitPoint;
+    private int armor;
+    private Point coordinateXY;
+    private int damage;
+    private double speed;
 
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
+    public GameMoveObject() {
+        super();
+        coordinateXY = new Point(0, 0);
+    }
 
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void move() {
 
-	/**
-	 * @return the inventory
-	 */
-	public Inventory getInventory() {
-		return inventory;
-	}
+    }
 
-	/**
-	 * @return the hitPoint
-	 */
-	public int getHitPoint() {
-		return hitPoint;
-	}
+    public void attack() {
 
-	/**
-	 * @param hitPoint the hitPoint to set
-	 */
-	public void setHitPoint(int hitPoint) {
-		this.hitPoint = hitPoint;
-	}
+    }
 
-	/**
-	 * @return the armor
-	 */
-	public int getArmor() {
-		return armor;
-	}
+    public void spell() {
 
-	/**
-	 * @param armor the armor to set
-	 */
-	public void setArmor(int armor) {
-		this.armor = armor;
-	}
+    }
 
-	/**
-	 * @return the coordinateXY
-	 */
-	public Point getCoordinateXY() {
-		return coordinateXY;
-	}
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * @param coordinateXY the coordinateXY to set
-	 */
-	public void setCoordinateXY(Point coordinateXY) {
-		this.coordinateXY = coordinateXY;
-	}
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	/**
-	 * @return the damage
-	 */
-	public int getDamage() {
-		return damage;
-	}
+    /**
+     * @return the inventory
+     */
+    public Inventory getInventory() {
+        return inventory;
+    }
 
-	/**
-	 * @param damage the damage to set
-	 */
-	public void setDamage(int damage) {
-		this.damage = damage;
-	}
+    /**
+     * @return the hitPoint
+     */
+    public int getHitPoint() {
+        return hitPoint;
+    }
 
-	public double getSpeed() {
-		return speed;
-	}
+    /**
+     * @param hitPoint the hitPoint to set
+     */
+    public void setHitPoint(int hitPoint) {
+        this.hitPoint = hitPoint;
+    }
 
-	public void setSpeed(double speed) {
-		this.speed = speed;
-	}	
+    /**
+     * @return the armor
+     */
+    public int getArmor() {
+        return armor;
+    }
+
+    /**
+     * @param armor the armor to set
+     */
+    public void setArmor(int armor) {
+        this.armor = armor;
+    }
+
+    /**
+     * @return the coordinateXY
+     */
+    public Point getCoordinateXY() {
+        return coordinateXY;
+    }
+
+    /**
+     * @param coordinateXY the coordinateXY to set
+     */
+    public void setCoordinateXY(Point coordinateXY) {
+        this.coordinateXY = coordinateXY;
+    }
+
+    /**
+     * @return the damage
+     */
+    public int getDamage() {
+        return damage;
+    }
+
+    /**
+     * @param damage the damage to set
+     */
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
 }
